@@ -1,23 +1,18 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { api, buildUrl, type InsertPaymentLink } from "@shared/routes";
+customer = gateway.customer.find("the_customer_id")
+customer.payment_methods # array of braintree.PaymentMethod instances
+payment_method.default
+payment_method = gateway.payment_method.find("credit-card-token")
+payment_method.__class__
+# <class 'braintree.credit_card.CreditCard'>
 
-// ============================================
-// Payment Links Hooks
-// ============================================
+payment_method = gateway.payment_method.find("paypal-account-token")
+payment_method.__class__
+# <class 'braintree.paypal_account.PayPalAccount'>
 
-// GET /api/links
-export function usePaymentLinks() {
-  return useQuery({
-    queryKey: [api.paymentLinks.list.path],
-    queryFn: async () => {
-      const res = await fetch(api.paymentLinks.list.path);
-      if (!res.ok) throw new Error("Failed to fetch payment links");
-      return api.paymentLinks.list.responses[200].parse(await res.json());
-    },
-  });
-}
+payment_method = gateway.payment_method.find("apple-pay-token")
+payment_method.__class__
+# <class 'braintree.apple_pay_card.ApplePayCard'>
 
-// GET /api/links/:id
-export function usePaymentLink(id: number) {
-  return useQuery({
-    queryKey: [api.paymentLinks.get.path, id],
+payment_method = gateway.payment_method.find("android-pay-token")
+payment_method.__class__
+# <class 'braintree.android_pay_card.AndroidPayCard'>
